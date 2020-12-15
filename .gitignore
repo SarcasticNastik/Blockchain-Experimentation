@@ -1,2 +1,4 @@
 ./Books
+*.xopp
+*.xopp~
 *.pdf
