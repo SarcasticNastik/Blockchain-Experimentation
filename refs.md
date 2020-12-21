@@ -6,3 +6,4 @@
 4. [Awesome list 1](https://github.com/hitripod/awesome-blockchain)
    - [Awesome list 2](https://github.com/openblockchains/awesome-blockchains#do-it-yourself-diy---build-your-own-blockchain)
 5. https://www.blockstack.org/
+6. https://arxiv.org/pdf/1906.04502.pdf

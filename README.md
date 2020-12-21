@@ -2,7 +2,7 @@
 
 ## Introductory Stuff
 
-### Cryptography
+### **Cryptography**
 
 - **RSA**: *Asymmetric Key Cryptosystems* 
 
@@ -16,9 +16,13 @@
 
 > A mathematical technique used to validate the authenticity and integrity of a message, software or digital document.
 
-- Shouldn't be possible to forge.
-
-Requirements: **Sign**$(sk; m)$, **Verification**$(V(pk;m;Sig) = True\ if \ valid \ signature)$ and **Key Generation**$(pk, sk)$.
+Digital signature scheme. A digital signature scheme consists of the following three algorithms:
+• (sk, pk) := generateKeys(keysize) The generateKeys method takes a key size and generates a key pair. The secret key sk is kept privately and used to sign messages. pk is the public verification key that you give to everybody. Anyone with this key can verify your signature.
+• sig := sign(sk, message) The sign method takes a message and a secret key, sk, as input and outputs a signature for message under sk.
+• isValid := verify(pk, message, sig) The verify method takes a message, a signature, and a public key as input. It returns a boolean value, isValid, that will be true if sig is a valid signature for message under public key pk, and false otherwise.  
+We require that the following two properties hold:
+• Valid signatures must verify: verify(pk, message, sign(sk, message)) == true.
+• Signatures are existentially unforgeable.
 
 #### Discrete Log Problem
 
@@ -51,7 +55,7 @@ $g$ -> Generator, large prime
 
   2. Select random $k$ from $(1, p - 1)$
 
-  3. $r = g^k\  mod\ p$; $s = k^{-1} (m\ - xr)\ mod\ p$ (;;m is message here)
+  3. $r = g^k\  mod\ p$; $s = k^{-1} (m\ - xr)\ mod\ p$ (;;`m` is message here)
 
 - **Verification**:
 
@@ -65,6 +69,13 @@ $$x^2 / a^2 + y^2 / b^2 = 1\ mod\ p$$ given $(a, b)$
 
 #### Cryptographic Hash Functions
 
+The hash funtions work on inputs of arbitrary length. Luckily, as long as we can build a hash function that works on fixed-length inputs, there’s a generic method to convert it into a hash function that works on arbitrary-length inputs
+
+- **Merkle-Damgård transform**: (Will consider SHA-256 while writing the following)
+    - *Compression Function* : underlying hash function (working on a fixed-length input).
+    - Divide the messages into blocks of fixed size, and consecutively compute the hash functions.
+    - SHA-256 takes 768 bit input and gives 256 bit output.
+    
 ##### Desirable Properties
 
 - Deterministic, Efficient
@@ -96,6 +107,7 @@ $hash\ =\ H()$
 ## [Distributed Consensus](https://www.preethikasireddy.com/post/lets-take-a-crack-at-understanding-distributed-consensus)
 
 - [Fischer-Lynch-Paterson Impossibility](https://en.wikipedia.org/wiki/Consensus_(computer_science)#The_FLP_impossibility_result_for_asynchronous_deterministic_consensus): Under some conditions, distributed consensus is impossible even with one single faulty node.
+- Byzantine Generals Problem.
 
 - **Paxos**: Never produces inconsistent results.(but assumptions are many) 
 - **RAFT** used now-a-days.
@@ -129,6 +141,21 @@ $hash\ =\ H()$
 ### Applications of BitCoin Scripts
 
 1. **Escrow Transactions**:
+
+   > An escrow is a financial arrangement where a third party holds and regulates payment of the funds required for two parties involved in a given transaction.
+
 2. **Green Addresses**:
+
 3. **Micro-payments**:
 
+### Role of BitCoin Node
+
+- **Check** the transaction inputs are in [UTXO](https://en.wikipedia.org/wiki/Unspent_transaction_output).
+
+- **Ensure** transaction is not a double spending.
+- **Execute** the o/p script of input transaction along with *scriptSig*.
+- **Broadcast** the transaction.
+
+# TODO
+
+- How Paxos work?
