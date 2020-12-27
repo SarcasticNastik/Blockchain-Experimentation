@@ -151,7 +151,6 @@ $hash\ =\ H()$
 ### Role of BitCoin Node
 
 - **Check** the transaction inputs are in [UTXO](https://en.wikipedia.org/wiki/Unspent_transaction_output).
-
 - **Ensure** transaction is not a double spending.
 - **Execute** the o/p script of input transaction along with *scriptSig*.
 - **Broadcast** the transaction.
@@ -159,3 +158,7 @@ $hash\ =\ H()$
 # TODO
 
 - How Paxos work?
+- [ ] [Ethereum Reading List](https://github.com/Scanate/EthList)
+
+- [ ] [Libbitcoin](https://github.com/libbitcoin) (C++ library for bitcoin)
+> Checkout the wiki for the same. Found Cryptoeconomics part pretty sweet (ofc, for a noobda like me :p)
